@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>ConsultarPaciente</title>
+    <link rel="stylesheet" type="text/css" href="../static/cons_paci_styles.css">
+</head>
+<body>
+    
+<div class="container">
+    <div class="form-container">
+        <h2>Buscar Cita</h2>
+        <form action="/cons_cita" method="post">
+            <label for="nombreMedico">Nombre del médico:</label>
+            <input type="text" id="nombreMedico" name="nombreMedico">
+
+            <label for="fecha">Fecha de la cita:</label>
+            <input type="date" id="fecha" name="fecha">
+
+            <input type="submit" value="Buscar">
+        </form>
+    </div>
+
+    {% if citas %}
+    <div class="results-container">
+        <h2>Resultados</h2>
+        <table style="color: black;">
+            <thead>
+                <tr>
+                    <th>Nombre Médico</th>
+                    <th>Nombre Paciente</th>
+                    <th>Fecha</th>
+                    <th>Síntomas</th>
+                    <th>Diagnóstico</th>
+                    <th>Tratamiento</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for cita in citas %}
+                <tr>
+                    <td>{{ cita.nombreMedico }}</td>
+                    <td>{{ cita.nombrePaciente }}</td>
+                    <td>{{ cita.fecha }}</td>
+                    <td>{{ cita.sintomas }}</td>
+                    <td>{{ cita.diagnostico }}</td>
+                    <td>{{ cita.tratamiento }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% endif %}
+</div>
+    
+</body>
+</html>
